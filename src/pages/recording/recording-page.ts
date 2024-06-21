@@ -51,7 +51,7 @@ export class RecordingPage extends LitElement {
           </p>
           <p>
             Say it like you would say it normally. Try moving around the room.
-            Occasionally whisper or speak up.
+            Occasionally speak softly or speak up.
           </p>
         </div>
       </div>
