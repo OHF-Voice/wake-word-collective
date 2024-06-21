@@ -29,7 +29,6 @@ export class CardLayout extends LitElement {
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 16px;
       max-width: 450px;
     }
 
