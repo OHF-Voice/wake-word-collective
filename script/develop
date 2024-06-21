@@ -1,0 +1,18 @@
+# Stop on errors
+set -e
+
+cd "$(dirname "$0")/.."
+
+rm -rf dist
+mkdir dist
+cp -r static dist/website
+
+# Quit all background tasks when script exits
+trap "kill 0" EXIT
+
+# Run tsc once as rollup expects those files
+npm exec -- tsc || true
+
+npm exec -- serve -p 5050 &
+npm exec -- tsc --watch &
+npm exec -- rollup -c --watch
