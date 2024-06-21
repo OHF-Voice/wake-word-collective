@@ -75,6 +75,7 @@ export class RecordingPage extends LitElement {
     }
 
     .recording {
+      box-sizing: border-box;
       width: 100%;
       font-size: 24px;
       font-weight: bold;
