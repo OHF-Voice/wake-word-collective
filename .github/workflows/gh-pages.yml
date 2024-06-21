@@ -24,7 +24,7 @@ jobs:
   # Build job
   build:
     runs-on: ubuntu-latest
-    if: ${{ github.repository == 'home-assistant/devices' }}
+    if: ${{ github.repository == 'ohf-voice/wake-word-collective' }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
