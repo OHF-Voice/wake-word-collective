@@ -35,7 +35,7 @@ export class ConsentPage extends LitElement {
       <card-layout header="Before we start recording">
         <div class="card-content">
           <p>
-            Selected wake word: ${WAKE_WORDS[this.wakeWord]} (<a
+            Selected wake word: ${WAKE_WORDS[this.wakeWord]}&nbsp;(<a
               href="#"
               @click=${this.cancelConsent}
               >change</a
@@ -51,10 +51,12 @@ export class ConsentPage extends LitElement {
               touch-target="wrapper"
               .disabled=${this.givingConsent}
             ></md-checkbox>
-            I agree to the&nbsp;
-            <a href="./terms.html" target="_blank">
-              Wake Word Collective terms
-            </a>
+            <span>
+              I agree to the
+              <a href="./terms.html" target="_blank">
+                Wake Word Collective terms
+              </a>
+            </span>
           </label>
           <p>
             <b>Description (optional)</b><br />
@@ -103,6 +105,10 @@ export class ConsentPage extends LitElement {
   static styles = css`
     a {
       color: var(--md-sys-color-primary);
+    }
+
+    md-checkbox {
+      min-width: 18px;
     }
 
     md-filled-text-field {

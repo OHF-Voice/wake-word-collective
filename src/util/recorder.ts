@@ -1,3 +1,5 @@
+let warned = false;
+
 export class Recorder {
   public expectWakeWord = false;
   public stopped = false;
@@ -21,13 +23,18 @@ export class Recorder {
       return;
     }
 
-    const mime = this.recorder.mimeType.split(";")[0];
-
-    console.log({ mime });
+    let mime = this.recorder.mimeType.split(";")[0];
 
     if (mime !== "audio/webm") {
-      alert(`Microphone mimetype not supported: ${mime}`);
-      this.stop();
+      // alert(`Microphone mimetype not supported: ${mime}`);
+      // this.stop();
+      // return;
+      // For testing purposes until we allow other formats
+      if (!warned && !["audio/ogg", "audio/mp4"].includes(mime)) {
+        warned = true;
+        alert(`Your mime type is not known yet, let us know: ${mime}`);
+      }
+      mime = "audio/webm";
     }
 
     if (this._listeners.data) {
@@ -40,7 +47,6 @@ export class Recorder {
       speed: "0",
     }).toString();
 
-    return;
     fetch(
       `https://services-dev.home-assistant.workers.dev/assist/wake_word/training_data/upload?${params}`,
       {

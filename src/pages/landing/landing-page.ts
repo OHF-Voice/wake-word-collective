@@ -16,12 +16,14 @@ export class LandingPage extends LitElement {
           <p>
             The Open Home Foundation is working on a privacy focused voice
             assistant. We have developed a novel wake word engine,
-            microWakeWord, that runs on cheap hardware.
+            <a href="https://github.com/kahrendt/microWakeWord" target="_blank">
+              microWakeWord </a
+            >, that is open source and runs on cheap hardware.
           </p>
           <p>
-            It is important to us that voice assistants works for everyone. To
-            ensure this, we are creating a audio set of people from all over the
-            world saying the wake word under different circumstances.
+            It is important that voice assistants works for everyone. That's why
+            we are creating an audio set with samples of people from all over
+            the world saying the wake word under different circumstances.
           </p>
         </div>
         <md-list>
@@ -54,6 +56,10 @@ export class LandingPage extends LitElement {
   }
 
   static styles = css`
+    a {
+      color: var(--md-sys-color-primary);
+    }
+
     md-list {
       border-radius: 12px;
     }
