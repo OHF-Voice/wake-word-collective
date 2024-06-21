@@ -71,9 +71,8 @@ export class Recorder {
     this.stream.getTracks().forEach((track) => {
       track.stop();
       track.enabled = false;
-      // this.stream.removeTrack(track);
+      this.stream.removeTrack(track);
     });
-    // this.vad.audioContext.close();
     if (this._listeners.stop) {
       this._listeners.stop();
     }
