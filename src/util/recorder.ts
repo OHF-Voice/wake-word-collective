@@ -68,11 +68,15 @@ export class Recorder {
     this.expectWakeWord = false;
     this.stopped = true;
     this.recorder.stop();
-    this.stream.getTracks().forEach((track) => {
-      track.stop();
-      track.enabled = false;
-      this.stream.removeTrack(track);
-    });
+
+    // Destroy vad
+    this.vad.pause();
+    this.vad.stream.getTracks().forEach((track: any) => track.stop());
+    this.vad.sourceNode.disconnect();
+    delete this.vad.audioNodeVAD;
+    this.vad.audioContext.close();
+    delete this.vad;
+
     if (this._listeners.stop) {
       this._listeners.stop();
     }
@@ -112,6 +116,7 @@ export const createRecorder = async (
       mediaRecorder.start();
     },
   });
+
   const recorder = new Recorder(wakeWord, stream, mediaRecorder, myvad);
   recorder.start();
   return recorder;
