@@ -17,7 +17,7 @@ export class LandingPage extends LitElement {
             The Open Home Foundation is working on a privacy focused voice
             assistant. We have developed a novel wake word engine,
             <a href="https://github.com/kahrendt/microWakeWord" target="_blank">
-              microWakeWord </a
+              microWakeWord</a
             >, that is open source and runs on cheap hardware.
           </p>
           <p>
