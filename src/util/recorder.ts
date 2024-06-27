@@ -1,7 +1,7 @@
 let warned = false;
 
 export class Recorder {
-  public expectWakeWord = false;
+  public expectWakeWord = true;
   public stopped = false;
   private _listeners: Record<string, () => void> = {};
 

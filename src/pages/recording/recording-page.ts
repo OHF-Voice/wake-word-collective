@@ -10,7 +10,6 @@ export class RecordingPage extends LitElement {
   @property() public description!: string;
   @property() public recorder!: Recorder;
   @state() public times = 10;
-  @state() public expectingWakeWord = false;
 
   protected firstUpdated(changedProperties: PropertyValues): void {
     super.firstUpdated(changedProperties);
@@ -30,17 +29,16 @@ export class RecordingPage extends LitElement {
       this.requestUpdate("recorder");
       showDelayedGreenDot();
     });
-    showDelayedGreenDot();
   }
 
   render() {
     return html`
       <div class="recording">RECORDING ACTIVE</div>
       <div class="instructions">
-        <p>When you see the green circle, say “Okay, Nabu”</p>
+        <p>When the circle is green, say “Okay, Nabu”</p>
         <div
           class="green-circle ${classMap({
-            show: this.recorder.expectWakeWord,
+            recording: this.recorder.expectWakeWord,
           })}"
         ></div>
         <div>
@@ -96,13 +94,12 @@ export class RecordingPage extends LitElement {
       width: 100px;
       height: 100px;
       border-radius: 50%;
-      background-color: green;
       margin: 16px auto;
-      visibility: hidden;
+      background-color: red;
     }
 
-    .green-circle.show {
-      visibility: visible;
+    .green-circle.recording {
+      background-color: green;
     }
   `;
 }
