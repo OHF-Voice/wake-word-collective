@@ -10,10 +10,7 @@ const config = {
     dir: "dist/website/js",
     format: "module",
   },
-  external: [
-    "https://cdn.jsdelivr.net/npm/onnxruntime-web@1.14.0/dist/ort.js",
-    "https://cdn.jsdelivr.net/npm/@ricky0123/vad-web@0.0.7/dist/bundle.min.js",
-  ],
+  external: ["https://cdn.jsdelivr.net/npm/onnxruntime-web@1.14.0/dist/ort.js"],
   preserveEntrySignatures: false,
   plugins: [
     commonjs(),
