@@ -14,16 +14,27 @@ export class LandingPage extends LitElement {
       <card-layout header="Wake Word Collective">
         <div class="card-content">
           <p>
-            The Open Home Foundation is working on a privacy focused voice
-            assistant. We have developed a novel wake word engine,
-            <a href="https://github.com/kahrendt/microWakeWord" target="_blank">
-              microWakeWord</a
+            With
+            <a href="https://www.home-assistant.io" target="_blank"
+              >Home Assistant</a
+            >
+            we set the goal to let anyone control their home in their own
+            language with a privacy focused voice assistant. We have developed
+            different local technologies to make this possible. One of them is a
+            novel wake word engine,
+            <a href="https://github.com/kahrendt/microWakeWord" target="_blank"
+              >microWakeWord</a
             >, that is open source and runs on cheap hardware.
           </p>
           <p>
-            It is important that voice assistants works for everyone. That's why
-            we are creating an audio set with samples of people from all over
-            the world saying the wake word under different circumstances.
+            It is important that voice assistants only listen when a user says
+            the wake word, but this is not an easy task! To increase the
+            accuracy of microWakeWord, we need recordings from people saying the
+            wake word from all over the world.
+          </p>
+          <p>
+            This website allows you to use your phone or computer to contribute
+            recordings of you saying the wake word.
           </p>
         </div>
         <md-list>

@@ -13,6 +13,7 @@ export class CardLayout extends LitElement {
       </div>
       <div class="spacer"></div>
       <div class="footer">
+        <a href="https://www.home-assistant.io">Home Assistant</a> –
         <a href="https://www.openhomefoundation.org">Open Home Foundation</a> –
         <a
           href="https://github.com/ohf-voice/wake-word-collective/issues"

@@ -21,8 +21,8 @@ export class RecordingPage extends LitElement {
     };
     this.recorder.addEventListener("data", () => {
       this.times--;
-      // Someone left the page open
-      if (this.times < -100) {
+      // Someone left the page open or it's hidden
+      if (this.times < -100 || document.hidden) {
         this.recorder.stop();
       }
       this.recorder.expectWakeWord = false;

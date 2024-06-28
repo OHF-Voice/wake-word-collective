@@ -41,10 +41,10 @@ export class ConsentPage extends LitElement {
               >change</a
             >)
           </p>
-          <p>
+          <p class="consent">
             <b>Consent</b><br />
-            We want to make this data publicly available without restrictions,
-            for which we need your consent.
+            We want to make all recordings publicly available without
+            restrictions, for which we need your consent.
           </p>
           <label class="formfield">
             <md-checkbox
@@ -61,7 +61,7 @@ export class ConsentPage extends LitElement {
           <p>
             <b>Description (optional)</b><br />
             Could you provide us with a brief description of yourself. We will
-            use this to balance the dataset.
+            use this to balance the training of the wake word.
           </p>
           <md-filled-text-field
             label="Description"
@@ -84,6 +84,7 @@ export class ConsentPage extends LitElement {
 
   async submitConsent() {
     if (!this.consentCheckbox.checked) {
+      this.shadowRoot!.querySelector("md-checkbox")!.focus();
       alert("Please agree to the Wake Word Collective terms");
       return;
     }
@@ -107,6 +108,10 @@ export class ConsentPage extends LitElement {
       color: var(--md-sys-color-primary);
     }
 
+    p.consent {
+      margin-bottom: 0;
+    }
+
     md-checkbox {
       min-width: 18px;
     }
@@ -116,10 +121,9 @@ export class ConsentPage extends LitElement {
       margin-top: 16px;
     }
     label.formfield {
-      display: inline-flex;
+      display: flex;
       align-items: center;
       padding-right: 8px;
-      margin-bottom: 16px;
     }
     .helper {
       font-size: 12px;
