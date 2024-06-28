@@ -20,7 +20,7 @@ export class LandingPage extends LitElement {
             >
             we set the goal to let anyone control their home in their own
             language with a privacy focused voice assistant. We have developed
-            different local technologies to make this possible. One of them is a
+            multiple local technologies to make this possible. One of them is a
             novel wake word engine,
             <a href="https://github.com/kahrendt/microWakeWord" target="_blank"
               >microWakeWord</a
@@ -29,8 +29,8 @@ export class LandingPage extends LitElement {
           <p>
             It is important that voice assistants only listen when a user says
             the wake word, but this is not an easy task! To increase the
-            accuracy of microWakeWord, we need recordings from people saying the
-            wake word from all over the world.
+            accuracy of microWakeWord, we need recordings from people saying
+            wake words from all over the world.
           </p>
           <p>
             This website allows you to use your phone or computer to contribute
