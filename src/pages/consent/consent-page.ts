@@ -31,6 +31,15 @@ export class ConsentPage extends LitElement {
   }
 
   render() {
+    if (this.givingConsent) {
+      return html`
+        <card-layout header="Starting recording studio">
+          <div class="card-content">
+            <i>Please wait.</i>
+          </div>
+        </card-layout>
+      `;
+    }
     return html`
       <card-layout header="Before we start recording">
         <div class="card-content">
