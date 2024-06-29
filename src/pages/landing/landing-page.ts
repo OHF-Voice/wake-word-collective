@@ -33,8 +33,8 @@ export class LandingPage extends LitElement {
             wake words from all over the world.
           </p>
           <p>
-            This website allows you to use your phone or computer to contribute
-            recordings of you saying the wake word.
+            This website allows you to record yourself with your phone or
+            computer and contribute them to the collective.
           </p>
         </div>
         <md-list>
