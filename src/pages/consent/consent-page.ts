@@ -70,7 +70,8 @@ export class ConsentPage extends LitElement {
           <p>
             <b>Description (optional)</b><br />
             Could you provide us with a brief description of yourself. We will
-            use this to balance the training of the wake word.
+            use this to balance the training of the wake word to ensure it works
+            best for everyone.
           </p>
           <md-filled-text-field
             label="Description"
@@ -98,18 +99,20 @@ export class ConsentPage extends LitElement {
       return;
     }
 
+    const description = this.descriptionField.value;
     this.givingConsent = true;
     const recorder = await createRecorder(this.wakeWord);
 
     if (!recorder) {
       this.givingConsent = false;
+      // restore old value
+      await this.updateComplete;
+      this.consentCheckbox.checked = true;
+      this.descriptionField.value = description;
       return;
     }
 
-    this.giveConsent(
-      recorder,
-      this.shadowRoot!.querySelector("md-filled-text-field")!.value,
-    );
+    this.giveConsent(recorder, description);
   }
 
   static styles = css`
