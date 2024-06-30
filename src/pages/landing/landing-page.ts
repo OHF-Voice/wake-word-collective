@@ -34,7 +34,9 @@ export class LandingPage extends LitElement {
           </p>
           <p>
             This website allows you to record yourself with your phone or
-            computer and contribute them to the collective.
+            computer and contribute them to the collective. We're starting with
+            one wake word, and are working with the community to decide which to
+            add next.
           </p>
         </div>
         <md-list>
