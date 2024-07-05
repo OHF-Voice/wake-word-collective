@@ -5,6 +5,7 @@ export class Recorder {
 
   constructor(
     public wakeWord: string,
+    public description: string,
     public stream: MediaStream,
     public recorder: MediaRecorder,
     public vad: any,
@@ -37,8 +38,7 @@ export class Recorder {
 
     const params = new URLSearchParams({
       wake_word: this.wakeWord,
-      distance: "0",
-      speed: "0",
+      user_content: this.description,
     }).toString();
 
     fetch(
@@ -79,6 +79,7 @@ export class Recorder {
 
 export const createRecorder = async (
   wakeWord: string,
+  description: string,
 ): Promise<Recorder | undefined> => {
   let stream: MediaStream;
   try {
@@ -111,7 +112,13 @@ export const createRecorder = async (
     },
   });
 
-  const recorder = new Recorder(wakeWord, stream, mediaRecorder, myvad);
+  const recorder = new Recorder(
+    wakeWord,
+    description,
+    stream,
+    mediaRecorder,
+    myvad,
+  );
   recorder.start();
   return recorder;
 };

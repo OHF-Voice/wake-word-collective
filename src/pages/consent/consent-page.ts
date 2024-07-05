@@ -56,10 +56,7 @@ export class ConsentPage extends LitElement {
             restrictions, for which we need your consent.
           </p>
           <label class="formfield">
-            <md-checkbox
-              touch-target="wrapper"
-              .disabled=${this.givingConsent}
-            ></md-checkbox>
+            <md-checkbox touch-target="wrapper"></md-checkbox>
             <span>
               I agree to the
               <a href="./terms.html" target="_blank">
@@ -68,22 +65,16 @@ export class ConsentPage extends LitElement {
             </span>
           </label>
           <p>
-            <b>Primary language (optional)</b><br />
+            <b>Primary language</b><br />
             What language are you most comfortable in? We will use this to
             balance the wake word model to ensure it works best for everyone.
           </p>
-          <md-filled-text-field
-            label="Description"
-            .disabled=${this.givingConsent}
-          ></md-filled-text-field>
+          <md-filled-text-field label="Description"></md-filled-text-field>
           <div class="helper">Example: Dutch</div>
         </div>
         <div class="card-actions">
           <span></span>
-          <md-text-button
-            @click=${this.submitConsent}
-            .disabled=${this.givingConsent}
-          >
+          <md-text-button @click=${this.submitConsent}>
             Start recording
           </md-text-button>
         </div>
@@ -93,14 +84,20 @@ export class ConsentPage extends LitElement {
 
   async submitConsent() {
     if (!this.consentCheckbox.checked) {
-      this.shadowRoot!.querySelector("md-checkbox")!.focus();
+      this.consentCheckbox.focus();
       alert("Please agree to the Wake Word Collective terms");
       return;
     }
 
     const description = this.descriptionField.value;
+    if (!description) {
+      this.descriptionField.focus();
+      alert("Please fill in your primary language");
+      return;
+    }
+
     this.givingConsent = true;
-    const recorder = await createRecorder(this.wakeWord);
+    const recorder = await createRecorder(this.wakeWord, description);
 
     if (!recorder) {
       this.givingConsent = false;
