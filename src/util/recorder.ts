@@ -1,5 +1,3 @@
-let warned = false;
-
 export class Recorder {
   public expectWakeWord = true;
   public stopped = false;
@@ -23,18 +21,14 @@ export class Recorder {
       return;
     }
 
-    let mime = this.recorder.mimeType.split(";")[0];
+    let mime = this.recorder.mimeType;
 
-    if (mime !== "audio/webm") {
-      // alert(`Microphone mimetype not supported: ${mime}`);
-      // this.stop();
-      // return;
-      // For testing purposes until we allow other formats
-      if (!warned && !["audio/ogg", "audio/mp4"].includes(mime)) {
-        warned = true;
-        alert(`Your mime type is not known yet, let us know: ${mime}`);
-      }
-      mime = "audio/webm";
+    if (
+      !["audio/webm", "audio/ogg", "audio/mp4"].includes(mime.split(";")[0])
+    ) {
+      alert(`Microphone mimetype not supported: ${mime}`);
+      this.stop();
+      return;
     }
 
     if (this._listeners.data) {
@@ -53,7 +47,7 @@ export class Recorder {
         method: "PUT",
         body: e.data,
         headers: {
-          "Content-Type": this.recorder.mimeType.split(";")[0],
+          "Content-Type": mime,
         },
       },
     );
