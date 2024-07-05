@@ -68,16 +68,15 @@ export class ConsentPage extends LitElement {
             </span>
           </label>
           <p>
-            <b>Description (optional)</b><br />
-            Could you provide us with a brief description of yourself. We will
-            use this to balance the training of the wake word to ensure it works
-            best for everyone.
+            <b>Primary language (optional)</b><br />
+            What language are you most comfortable in? We will use this to
+            balance the wake word model to ensure it works best for everyone.
           </p>
           <md-filled-text-field
             label="Description"
             .disabled=${this.givingConsent}
           ></md-filled-text-field>
-          <div class="helper">Example: Dutch male, 40s</div>
+          <div class="helper">Example: Dutch</div>
         </div>
         <div class="card-actions">
           <span></span>
