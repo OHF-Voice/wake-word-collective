@@ -69,7 +69,7 @@ export class ConsentPage extends LitElement {
             What language are you most comfortable in? We will use this to
             balance the wake word model to ensure it works best for everyone.
           </p>
-          <md-filled-text-field label="Description"></md-filled-text-field>
+          <md-filled-text-field label="Language"></md-filled-text-field>
           <div class="helper">Example: Dutch</div>
         </div>
         <div class="card-actions">
