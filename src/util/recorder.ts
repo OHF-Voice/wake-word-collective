@@ -42,7 +42,7 @@ export class Recorder {
     }).toString();
 
     fetch(
-      `https://services-dev.home-assistant.workers.dev/assist/wake_word/training_data/upload?${params}`,
+      `https://services.home-assistant.io/assist/wake_word/training_data/upload?${params}`,
       {
         method: "PUT",
         body: e.data,
