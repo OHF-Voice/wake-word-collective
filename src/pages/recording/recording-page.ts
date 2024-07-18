@@ -3,6 +3,7 @@ import { customElement, property, state } from "lit/decorators.js";
 import type { Recorder } from "../../util/recorder";
 import { classMap } from "lit/directives/class-map.js";
 import "@material/web/button/filled-button";
+import { WAKE_WORDS } from "../../const";
 
 @customElement("recording-page")
 export class RecordingPage extends LitElement {
@@ -13,11 +14,11 @@ export class RecordingPage extends LitElement {
 
   protected firstUpdated(changedProperties: PropertyValues): void {
     super.firstUpdated(changedProperties);
-    const showDelayedGreenDot = () => {
+    const showDelayedGreenDot = (time = 4000) => {
       setTimeout(() => {
         this.recorder.expectWakeWord = true;
         this.requestUpdate("recorder");
-      }, 4000);
+      }, time);
     };
     this.recorder.addEventListener("data", () => {
       this.times--;
@@ -29,30 +30,29 @@ export class RecordingPage extends LitElement {
       this.requestUpdate("recorder");
       showDelayedGreenDot();
     });
+    showDelayedGreenDot(1000);
   }
 
   render() {
     return html`
-      <div class="recording">RECORDING ACTIVE</div>
-      <div class="instructions">
-        <p>When the circle is green, say “Okay, Nabu”</p>
+      <div class="recording-sign">RECORDING ACTIVE</div>
+      <div class="speak-indicator">
+        <p>When the circle turns green, say “${WAKE_WORDS[this.wakeWord]}”</p>
         <div
           class="green-circle ${classMap({
             recording: this.recorder.expectWakeWord,
           })}"
         ></div>
-        <div>
-          <p>
-            ${this.times > 0
-              ? html`${this.times} more time${this.times == 1 ? "" : "s"}`
-              : "Keep going if you want to!"}
-          </p>
-          <p>
-            Say it like you would say it normally. Try moving around the room.
-            Occasionally speak softly or speak up.
-          </p>
-        </div>
+        <p>
+          ${this.times > 0
+            ? html`${this.times} more time${this.times == 1 ? "" : "s"}`
+            : "Keep going if you want to!"}
+        </p>
       </div>
+      <p class="instructions">
+        Say it like you would say it normally. Try putting your device down
+        while moving around the room. Occasionally speak softly or speak up.
+      </p>
       <md-filled-button
         @click=${() => {
           this.recorder.stop();
@@ -72,7 +72,7 @@ export class RecordingPage extends LitElement {
       height: 100%;
     }
 
-    .recording {
+    .recording-sign {
       box-sizing: border-box;
       width: 100%;
       font-size: 24px;
@@ -83,11 +83,15 @@ export class RecordingPage extends LitElement {
       color: white;
     }
 
-    .instructions {
+    .speak-indicator {
       flex: 1;
       padding: 16px;
       text-align: center;
       font-size: 24px;
+    }
+
+    .instructions {
+      padding: 0 16px;
     }
 
     .green-circle {
@@ -95,11 +99,16 @@ export class RecordingPage extends LitElement {
       height: 100px;
       border-radius: 50%;
       margin: 16px auto;
-      background-color: red;
+      border: 5px solid red;
     }
 
     .green-circle.recording {
       background-color: green;
+      border-color: green;
+    }
+
+    md-filled-button {
+      margin-bottom: 16px;
     }
   `;
 }

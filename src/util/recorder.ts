@@ -4,7 +4,7 @@ const BASE_URL =
     : "https://services.home-assistant.io/assist/wake_word/training_data/upload";
 
 export class Recorder {
-  public expectWakeWord = true;
+  public expectWakeWord = false;
   public stopped = false;
   private _listeners: Record<string, () => void> = {};
 
