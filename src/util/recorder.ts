@@ -1,3 +1,8 @@
+const BASE_URL =
+  location.hostname === "localhost"
+    ? "https://services-dev.home-assistant.workers.dev/assist/wake_word/training_data/upload"
+    : "https://services.home-assistant.io/assist/wake_word/training_data/upload";
+
 export class Recorder {
   public expectWakeWord = true;
   public stopped = false;
@@ -41,16 +46,13 @@ export class Recorder {
       user_content: this.description,
     }).toString();
 
-    fetch(
-      `https://services.home-assistant.io/assist/wake_word/training_data/upload?${params}`,
-      {
-        method: "PUT",
-        body: e.data,
-        headers: {
-          "Content-Type": mime,
-        },
+    fetch(`${BASE_URL}?${params}`, {
+      method: "PUT",
+      body: e.data,
+      headers: {
+        "Content-Type": mime,
       },
-    );
+    });
   };
 
   start() {
