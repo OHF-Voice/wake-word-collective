@@ -59,7 +59,7 @@ export class RecordingPage extends LitElement {
           this.recorder.stop();
         }}
       >
-        Stop Recording
+        ${this.times > 0 ? "Stop Recording" : "I am finished"}
       </md-filled-button>
     `;
   }
