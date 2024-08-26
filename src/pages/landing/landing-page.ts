@@ -30,7 +30,8 @@ export class LandingPage extends LitElement {
             It is important that voice assistants only listen when a user says
             the wake word, but this is not an easy task! To increase the
             accuracy of microWakeWord, we need recordings from people from all
-            over the world saying wake words.
+            genders, ages, and accents from all over the world saying wake
+            words.
           </p>
           <p>
             This website allows you to record yourself with your phone or
