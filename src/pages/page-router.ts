@@ -7,83 +7,102 @@ import type { Recorder } from "../util/recorder";
 
 @customElement("page-router")
 export class PageRouter extends LitElement {
-  @state()
-  private wakeWord?: string;
+    @state()
+    private wakeWord?: string;
 
-  @state()
-  private recorder?: Recorder;
+    @state()
+    private recorder?: Recorder;
 
-  @state()
-  private description = "";
+    @state()
+    private showInstructions = false;
 
-  protected firstUpdated(changedProperties: PropertyValues): void {
-    super.firstUpdated(changedProperties);
-    import("./lazy-load.js");
+    @state()
+    private description = "";
 
-    const processHash = () => {
-      const hashWakeWord = location.hash.slice(1);
+    protected firstUpdated(changedProperties: PropertyValues): void {
+        super.firstUpdated(changedProperties);
+        import("./lazy-load.js");
 
-      if (hashWakeWord in WAKE_WORDS || hashWakeWord === "thank_you") {
-        this.wakeWord = hashWakeWord;
-      } else {
-        this.wakeWord = undefined;
-      }
-    };
+        const processHash = () => {
+            const hashWakeWord = location.hash.slice(1);
 
-    processHash();
+            if (hashWakeWord in WAKE_WORDS || hashWakeWord === "thank_you") {
+                this.wakeWord = hashWakeWord;
+            } else {
+                this.wakeWord = undefined;
+            }
+        };
 
-    window.addEventListener("hashchange", processHash);
-  }
+        processHash();
 
-  render() {
-    if (!this.wakeWord) {
-      return html`
-        <landing-page
-          .selectWakeWord=${(wakeWord: string) => {
-            this.wakeWord = wakeWord;
-            location.hash = wakeWord;
-          }}
-        ></landing-page>
-      `;
+        window.addEventListener("hashchange", processHash);
     }
 
-    if (this.wakeWord === "thank_you") {
-      return html`<thank-you-page></thank-you-page>`;
+    render() {
+        if (!this.wakeWord) {
+            return html`
+                <landing-page
+                    .selectWakeWord=${(wakeWord: string) => {
+                        this.wakeWord = wakeWord;
+                        location.hash = wakeWord;
+                    }}
+                ></landing-page>
+            `;
+        }
+
+        if (this.wakeWord === "thank_you") {
+            return html`<thank-you-page></thank-you-page>`;
+        }
+
+        if (this.showInstructions) {
+            return html` <instructions-page
+                .wakeWord=${this.wakeWord}
+                .startRecording=${() => {
+                    this.showInstructions = false;
+                    this.recorder?.start();
+                }}
+            ></instructions-page>`;
+        }
+
+        if (!this.recorder) {
+            return html`
+                <consent-page
+                    .wakeWord=${this.wakeWord}
+                    .description=${this.description}
+                    .giveConsent=${(
+                        recorder: Recorder,
+                        description: string
+                    ) => {
+                        this.recorder = recorder;
+                        this.showInstructions = true;
+                        recorder.addEventListener("stop", () => {
+                            this.wakeWord = undefined;
+                            this.showInstructions = false;
+                            location.hash = "thank_you";
+                            this.recorder = undefined;
+                        });
+                        this.description = description;
+                    }}
+                    .cancelConsent=${() => {
+                        this.wakeWord = undefined;
+                        this.showInstructions = false;
+                    }}
+                ></consent-page>
+            `;
+        }
+
+        return html`
+            <recording-page
+                .recorder=${this.recorder}
+                .wakeWord=${this.wakeWord}
+                .description=${this.description}
+            ></recording-page>
+        `;
     }
 
-    if (!this.recorder) {
-      return html`
-        <consent-page
-          .wakeWord=${this.wakeWord}
-          .description=${this.description}
-          .giveConsent=${(recorder: Recorder, description: string) => {
-            this.recorder = recorder;
-            recorder.addEventListener("stop", () => {
-              this.wakeWord = undefined;
-              location.hash = "thank_you";
-              this.recorder = undefined;
-            });
-            this.description = description;
-          }}
-          .cancelConsent=${() => {
-            this.wakeWord = undefined;
-          }}
-        ></consent-page>
-      `;
-    }
-
-    return html`
-      <recording-page
-        .recorder=${this.recorder}
-        .wakeWord=${this.wakeWord}
-        .description=${this.description}
-      ></recording-page>
+    static styles = css`
+        * {
+            flex: 1;
+        }
     `;
-  }
-
-  static styles = css`
-    * {
-      flex: 1;
-    }
-  `;
 }
