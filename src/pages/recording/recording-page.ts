@@ -9,7 +9,10 @@ import { WAKE_WORDS } from "../../const";
 export class RecordingPage extends LitElement {
   @property() public wakeWord!: string;
   @property() public description!: string;
-  @property() public recorder!: Recorder;
+  @property({
+    attribute: false,
+  })
+  public recorder!: Recorder;
   @state() public times = 10;
 
   protected firstUpdated(changedProperties: PropertyValues): void {
