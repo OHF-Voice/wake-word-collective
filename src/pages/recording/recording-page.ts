@@ -9,7 +9,10 @@ import { WAKE_WORDS } from "../../const";
 export class RecordingPage extends LitElement {
   @property() public wakeWord!: string;
   @property() public description!: string;
-  @property() public recorder!: Recorder;
+  @property({
+    attribute: false,
+  })
+  public recorder!: Recorder;
   @state() public times = 10;
 
   protected firstUpdated(changedProperties: PropertyValues): void {
@@ -42,7 +45,14 @@ export class RecordingPage extends LitElement {
           class="green-circle ${classMap({
             recording: this.recorder.expectWakeWord,
           })}"
-        ></div>
+        >
+          <span class="sr-only" aria-live="assertive">
+            Status:
+            ${this.recorder.expectWakeWord
+              ? "Say the wake word"
+              : "Processing. Please wait..."}
+          </span>
+        </div>
         <p>
           ${this.times > 0
             ? html`${this.times} more time${this.times == 1 ? "" : "s"}`
@@ -110,6 +120,15 @@ export class RecordingPage extends LitElement {
 
     md-filled-button {
       margin-bottom: 16px;
+    }
+
+    .sr-only {
+      position: absolute;
+      left: -10000px;
+      top: auto;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
     }
   `;
 }
