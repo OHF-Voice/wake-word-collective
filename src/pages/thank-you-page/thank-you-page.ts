@@ -3,6 +3,7 @@ import { customElement } from "lit/decorators.js";
 import { ICON_CHEVRON_SLOTTED } from "../../const";
 import "@material/web/button/text-button";
 import "../../components/card-layout";
+import "../../components/share-url";
 
 @customElement("thank-you-page")
 export class ThankYouPage extends LitElement {
@@ -18,6 +19,7 @@ export class ThankYouPage extends LitElement {
           <p>
             <strong>Share this with your friends and family.</strong>
             The more we get, the better it becomes!
+            <share-url></share-url>
           </p>
         </div>
         <div class="card-actions">
