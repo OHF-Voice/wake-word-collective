@@ -1,6 +1,6 @@
 import { LitElement, html } from "lit";
 import { customElement } from "lit/decorators.js";
-import { ICON_CHEVRON_SLOTTED } from "../../const";
+import { ICON_CHEVRON_SLOTTED, PAGE_STYLES } from "../../const";
 import "@material/web/button/text-button";
 import "../../components/card-layout";
 import "../../components/share-url";
@@ -9,7 +9,7 @@ import "../../components/share-url";
 export class ThankYouPage extends LitElement {
   render() {
     return html`
-      <card-layout header="Thank you!">
+      <card-layout header="Thank you!" casita="heart" alignment="center">
         <div class="card-content">
           <p>
             Thanks to your help, we are one step closer to making voice
@@ -39,4 +39,6 @@ export class ThankYouPage extends LitElement {
       "",
     ));
   }
+
+  static styles = [PAGE_STYLES];
 }

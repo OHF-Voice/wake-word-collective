@@ -4,7 +4,7 @@ import "@material/web/list/list";
 import "@material/web/list/list-item";
 import "@material/web/icon/icon";
 import "../../components/card-layout";
-import { WAKE_WORDS, ICON_CHEVRON_SLOTTED } from "../../const";
+import { WAKE_WORDS, ICON_CHEVRON_SLOTTED, PAGE_STYLES } from "../../const";
 
 @customElement("landing-page")
 export class LandingPage extends LitElement {
@@ -55,31 +55,34 @@ export class LandingPage extends LitElement {
     `;
   }
 
-  static styles = css`
-    a {
-      color: var(--md-sys-color-primary);
-    }
+  static styles = [
+    PAGE_STYLES,
+    css`
+      a {
+        color: var(--md-sys-color-primary);
+      }
 
-    md-list {
-      border-radius: 12px;
-    }
-    svg {
-      width: 24px;
-    }
-    p:last-child {
-      margin-bottom: 0;
-    }
+      md-list {
+        border-radius: 12px;
+      }
+      svg {
+        width: 24px;
+      }
+      p:last-child {
+        margin-bottom: 0;
+      }
 
-    .note {
-      background-color: #f5f5f5;
-      font-size: 0.875rem;
-      border-radius: 6px;
-      padding: 12px;
-      line-height: 1.5;
-    }
+      .note {
+        background-color: #f5f5f5;
+        font-size: 0.875rem;
+        border-radius: 6px;
+        padding: 12px;
+        line-height: 1.5;
+      }
 
-    .note p:first-of-type {
-      margin-top: 0;
-    }
-  `;
+      .note p:first-of-type {
+        margin-top: 0;
+      }
+    `,
+  ];
 }

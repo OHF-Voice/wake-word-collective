@@ -32,7 +32,7 @@ export class ShareURL extends LitElement {
 
   static styles = css`
     md-text-button {
-      margin-top: 2rem;
+      margin-top: 16px;
       width: 100%;
     }
   `;

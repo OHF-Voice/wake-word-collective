@@ -4,7 +4,7 @@ import "@material/web/checkbox/checkbox";
 import "@material/web/button/text-button";
 import "@material/web/textfield/filled-text-field";
 import "../../components/card-layout";
-import { WAKE_WORDS, ICON_CHEVRON_SLOTTED } from "../../const";
+import { WAKE_WORDS, ICON_CHEVRON_SLOTTED, PAGE_STYLES } from "../../const";
 
 @customElement("consent-page")
 export class ConsentPage extends LitElement {
@@ -49,7 +49,7 @@ export class ConsentPage extends LitElement {
             ${this.getChangeLink()}
           </p>
           <p class="consent">
-            <b>Consent</b><br />
+            <strong>Consent</strong><br />
             We want to make all recordings publicly available without
             restrictions, for which we need your consent.
           </p>
@@ -63,7 +63,7 @@ export class ConsentPage extends LitElement {
             </span>
           </label>
           <p>
-            <b>Primary language</b><br />
+            <strong>Primary language</strong><br />
             What language are you most comfortable with? This will help us make
             it work better for that accent.
           </p>
@@ -98,32 +98,35 @@ export class ConsentPage extends LitElement {
     this.giveConsent(description);
   }
 
-  static styles = css`
-    a {
-      color: var(--md-sys-color-primary);
-    }
+  static styles = [
+    PAGE_STYLES,
+    css`
+      a {
+        color: var(--md-sys-color-primary);
+      }
 
-    p.consent {
-      margin-bottom: 0;
-    }
+      p.consent {
+        margin-bottom: 0;
+      }
 
-    md-checkbox {
-      min-width: 18px;
-    }
+      md-checkbox {
+        min-width: 18px;
+      }
 
-    md-filled-text-field {
-      display: block;
-      margin-top: 16px;
-    }
-    label.formfield {
-      display: flex;
-      align-items: center;
-      padding-right: 8px;
-    }
-    .helper {
-      font-size: 12px;
-      display: block;
-      padding-left: 16px;
-    }
-  `;
+      md-filled-text-field {
+        display: block;
+        margin-top: 16px;
+      }
+      label.formfield {
+        display: flex;
+        align-items: center;
+        padding-right: 8px;
+      }
+      .helper {
+        font-size: 12px;
+        display: block;
+        padding-left: 16px;
+      }
+    `,
+  ];
 }
