@@ -25,6 +25,7 @@ export class InstructionsPage extends LitElement {
   render() {
     return html`
       <card-layout header="Before we get started">
+        <img src="./images/demo.gif" class="demo" />
         <div class="card-content">
           ${this.recorderError
             ? html`
@@ -111,6 +112,12 @@ export class InstructionsPage extends LitElement {
 
       ol li:not(:last-child) {
         margin-bottom: 0.5rem;
+      }
+
+      img.demo {
+        width: 100%;
+        border-top: 1px solid rgba(0, 0, 0, 0.12);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.12);
       }
     `,
   ];
