@@ -35,7 +35,6 @@ export class ThankYouPage extends LitElement {
   }
 
   restart() {
-    // replace url with url withouth hash
     return (window.location.href = window.location.href.replace(
       window.location.hash,
       "",
