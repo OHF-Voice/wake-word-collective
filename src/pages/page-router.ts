@@ -1,4 +1,4 @@
-import { LitElement, PropertyValues, css, html } from "lit";
+import { LitElement, PropertyValues, html } from "lit";
 import { customElement, state } from "lit/decorators.js";
 import "./landing/landing-page";
 import "./thank-you-page/thank-you-page";
@@ -102,11 +102,4 @@ export class PageRouter extends LitElement {
       ></recording-page>
     `;
   }
-
-  static styles = css`
-    recording-page {
-      width: 100%;
-      height: 100%;
-    }
-  `;
 }
