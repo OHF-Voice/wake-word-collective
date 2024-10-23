@@ -40,6 +40,7 @@ export class ConsentPage extends LitElement {
         </card-layout>
       `;
     }
+
     return html`
       <card-layout header="Some details">
         <div class="card-content">
@@ -117,11 +118,13 @@ export class ConsentPage extends LitElement {
         display: block;
         margin-top: 16px;
       }
+
       label.formfield {
         display: flex;
         align-items: center;
         padding-right: 8px;
       }
+
       .helper {
         font-size: 12px;
         display: block;

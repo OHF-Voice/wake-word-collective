@@ -40,7 +40,6 @@ export class InstructionsPage extends LitElement {
             <strong>${WAKE_WORDS[this.wakeWord]}</strong>, a couple of times
             over.
           </p>
-
           <ol>
             <li>
               <strong>Place this device down</strong> in the kind of spot you'd
@@ -58,7 +57,6 @@ export class InstructionsPage extends LitElement {
               Try speaking <strong>quietly</strong> and <strong>LOUDLY</strong>.
             </li>
           </ol>
-
           <p>Don’t worry about background noise; it's useful for training</p>
         </div>
         <div class="card-actions">
@@ -91,9 +89,11 @@ export class InstructionsPage extends LitElement {
       md-list {
         border-radius: 12px;
       }
+
       svg {
         width: 24px;
       }
+
       p:last-child {
         margin-bottom: 0;
       }

@@ -65,9 +65,11 @@ export class LandingPage extends LitElement {
       md-list {
         border-radius: 12px;
       }
+
       svg {
         width: 24px;
       }
+
       p:last-child {
         margin-bottom: 0;
       }

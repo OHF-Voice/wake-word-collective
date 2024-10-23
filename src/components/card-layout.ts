@@ -24,6 +24,7 @@ export class CardLayout extends LitElement {
         </h1>
       `;
     }
+
     return html`
       <div class="ha-card align-${this.alignment}">
         ${cardHeader}
