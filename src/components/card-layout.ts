@@ -9,8 +9,9 @@ export class CardLayout extends LitElement {
   @property() public alignment: "center" | "left" = "left";
 
   render() {
-    return html`
-      <div class="ha-card align-${this.alignment}">
+    let cardHeader = null;
+    if (this.header) {
+      cardHeader = html`
         <h1 class="card-header">
           ${this.casita
             ? html`
@@ -21,6 +22,11 @@ export class CardLayout extends LitElement {
             : null}
           ${this.header}
         </h1>
+      `;
+    }
+    return html`
+      <div class="ha-card align-${this.alignment}">
+        ${cardHeader}
         <slot></slot>
       </div>
       <div class="spacer"></div>
@@ -77,15 +83,15 @@ export class CardLayout extends LitElement {
         display: block;
         transition: all 0.3s ease-out;
         position: relative;
-        margin-top: 50px;
+        margin-top: 25px;
         width: 100%;
         max-width: 600px;
       }
 
       @media all and (max-width: 500px) {
         .ha-card {
-          --ha-card-border-radius: 0;
-          margin-top: 0;
+          max-width: 95%;
+          margin-top: 16px;
         }
       }
 
@@ -103,10 +109,14 @@ export class CardLayout extends LitElement {
       }
 
       h1.card-header {
-        margin: 24px 16px 16px;
+        margin: 16px 16px 16px;
         display: flex;
         font-weight: 500;
         flex-direction: column;
+      }
+
+      .casita {
+        margin-top: 16px;
       }
 
       .casita img {
@@ -119,7 +129,7 @@ export class CardLayout extends LitElement {
       }
 
       ::slotted(.card-actions) {
-        border-top: 1px solid #e8e8e8;
+        border-top: 1px solid rgba(0, 0, 0, 0.12);
         display: flex;
         justify-content: flex-end;
         align-items: center;

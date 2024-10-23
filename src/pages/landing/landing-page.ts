@@ -12,7 +12,7 @@ export class LandingPage extends LitElement {
 
   render() {
     return html`
-      <card-layout header="Wake Word Collective">
+      <card-layout>
         <div class="card-content">
           <p>
             Give us a minute of your time to improve our community-driven,

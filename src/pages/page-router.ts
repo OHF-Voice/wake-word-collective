@@ -2,6 +2,7 @@ import { LitElement, PropertyValues, css, html } from "lit";
 import { customElement, state } from "lit/decorators.js";
 import "./landing/landing-page";
 import "./thank-you-page/thank-you-page";
+import "../components/header-logo";
 import { WAKE_WORDS } from "../const";
 import type { Recorder } from "../util/recorder";
 
@@ -41,6 +42,7 @@ export class PageRouter extends LitElement {
   render() {
     if (!this.wakeWord) {
       return html`
+        <header-logo></header-logo>
         <landing-page
           .selectWakeWord=${(wakeWord: string) => {
             this.wakeWord = wakeWord;
@@ -51,11 +53,15 @@ export class PageRouter extends LitElement {
     }
 
     if (this.wakeWord === "thank_you") {
-      return html`<thank-you-page></thank-you-page>`;
+      return html`
+        <header-logo></header-logo>
+        <thank-you-page></thank-you-page>
+      `;
     }
 
     if (this.showInstructions) {
       return html`
+        <header-logo></header-logo>
         <instructions-page
           .wakeWord=${this.wakeWord}
           .description=${this.description}
@@ -78,6 +84,7 @@ export class PageRouter extends LitElement {
 
     if (!this.recorder) {
       return html`
+        <header-logo></header-logo>
         <consent-page
           .wakeWord=${this.wakeWord}
           .description=${this.description}
