@@ -19,8 +19,6 @@ export class ConsentPage extends LitElement {
 
   @query("md-checkbox") private consentCheckbox!: HTMLInputElement;
 
-  @state() private givingConsent = false;
-
   firstUpdated(changedProperties: PropertyValues) {
     super.firstUpdated(changedProperties);
 
@@ -30,16 +28,6 @@ export class ConsentPage extends LitElement {
   }
 
   render() {
-    if (this.givingConsent) {
-      return html`
-        <card-layout header="Checking audio device">
-          <div class="card-content" slot="card-content">
-            <i>Please wait…</i>
-          </div>
-        </card-layout>
-      `;
-    }
-
     return html`
       <card-layout header="Some details">
         <div class="card-content" slot="content">
@@ -98,7 +86,6 @@ export class ConsentPage extends LitElement {
       return;
     }
 
-    this.givingConsent = true;
     this.giveConsent(description);
   }
 
