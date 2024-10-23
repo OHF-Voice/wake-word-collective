@@ -14,7 +14,7 @@ export class RecordingPage extends LitElement {
     attribute: false,
   })
   public recorder!: Recorder;
-  @state() public times = 10;
+  @state() private times = 10;
 
   protected firstUpdated(changedProperties: PropertyValues): void {
     super.firstUpdated(changedProperties);
