@@ -22,9 +22,10 @@ export class ConsentPage extends LitElement {
   @state() private givingConsent = false;
 
   firstUpdated(changedProperties: PropertyValues) {
+    super.firstUpdated(changedProperties);
+
     preloadImage("./images/demo.gif");
 
-    super.firstUpdated(changedProperties);
     this.descriptionField.value = this.description;
   }
 

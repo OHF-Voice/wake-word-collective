@@ -23,6 +23,10 @@ export const ICON_COPY_SLOTTED = svg`
 `;
 
 export const PAGE_STYLES = css`
+  a {
+    color: var(--md-sys-color-primary);
+  }
+
   strong {
     font-weight: 600;
   }

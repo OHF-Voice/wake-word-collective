@@ -17,9 +17,10 @@ export class RecordingPage extends LitElement {
   @state() private times = 10;
 
   protected firstUpdated(changedProperties: PropertyValues): void {
+    super.firstUpdated(changedProperties);
+
     preloadImage("./images/casita/heart.gif");
 
-    super.firstUpdated(changedProperties);
     const showDelayedGreenDot = (time = 4000) => {
       setTimeout(() => {
         this.recorder.expectWakeWord = true;

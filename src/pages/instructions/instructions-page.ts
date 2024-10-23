@@ -87,10 +87,6 @@ export class InstructionsPage extends LitElement {
   static styles = [
     PAGE_STYLES,
     css`
-      a {
-        color: var(--md-sys-color-primary);
-      }
-
       md-list {
         border-radius: 12px;
       }
@@ -100,6 +96,7 @@ export class InstructionsPage extends LitElement {
       }
 
       img.demo {
+        display: block;
         width: 100%;
       }
     `,
