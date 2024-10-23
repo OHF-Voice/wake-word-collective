@@ -28,6 +28,11 @@ export class ShareURL extends LitElement {
 
     this.copied = true;
     this.requestUpdate("copied");
+
+    setTimeout(() => {
+      this.copied = false;
+      this.requestUpdate("copied");
+    }, 5000);
   }
 
   static styles = css`
