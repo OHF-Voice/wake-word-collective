@@ -15,9 +15,6 @@ export class PageRouter extends LitElement {
   private recorder?: Recorder;
 
   @state()
-  private showInstructions = false;
-
-  @state()
   private description = "";
 
   protected firstUpdated(changedProperties: PropertyValues): void {
@@ -55,7 +52,22 @@ export class PageRouter extends LitElement {
       return html`<thank-you-page></thank-you-page>`;
     }
 
-    if (this.showInstructions) {
+    if (!this.description) {
+      return html`
+        <consent-page
+          .wakeWord=${this.wakeWord}
+          .description=${this.description}
+          .giveConsent=${(description: string) => {
+            this.description = description;
+          }}
+          .cancelConsent=${() => {
+            this.wakeWord = undefined;
+          }}
+        ></consent-page>
+      `;
+    }
+
+    if (!this.recorder) {
       return html`
         <instructions-page
           .wakeWord=${this.wakeWord}
@@ -66,31 +78,12 @@ export class PageRouter extends LitElement {
             recorder.addEventListener("stop", () => {
               this.wakeWord = undefined;
               this.recorder = undefined;
-              this.showInstructions = false;
               location.hash = "thank_you";
             });
 
-            this.showInstructions = false;
             this.recorder?.start();
           }}
         ></instructions-page>
-      `;
-    }
-
-    if (!this.recorder) {
-      return html`
-        <consent-page
-          .wakeWord=${this.wakeWord}
-          .description=${this.description}
-          .giveConsent=${(description: string) => {
-            this.showInstructions = true;
-            this.description = description;
-          }}
-          .cancelConsent=${() => {
-            this.wakeWord = undefined;
-            this.showInstructions = false;
-          }}
-        ></consent-page>
       `;
     }
 
