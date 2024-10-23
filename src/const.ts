@@ -26,4 +26,20 @@ export const PAGE_STYLES = css`
   strong {
     font-weight: 600;
   }
+
+  ol li:not(:last-child) {
+    margin-bottom: 0.5rem;
+  }
+
+  .casita img {
+    height: 120px;
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+
+  p:first-child {
+    margin-top: 0;
+  }
 `;

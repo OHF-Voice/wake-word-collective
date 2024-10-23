@@ -1,10 +1,10 @@
 import { LitElement, css, html } from "lit";
-import { customElement } from "lit/decorators.js";
+import { customElement, state } from "lit/decorators.js";
 import { ICON_CHECK_SLOTTED, ICON_COPY_SLOTTED } from "../const";
 
 @customElement("share-url")
 export class ShareURL extends LitElement {
-  private copied: boolean = false;
+  @state() private copied: boolean = false;
 
   render() {
     return html`
@@ -13,8 +13,9 @@ export class ShareURL extends LitElement {
         @click=${this.copyToClipboard}
         ?disabled=${this.copied}
       >
-        ${this.copied ? "URL copied to clipboard" : "Copy URL to clipboard"}
-        ${this.copied ? ICON_CHECK_SLOTTED : ICON_COPY_SLOTTED}
+        ${this.copied
+          ? html`URL copied to clipboard! ${ICON_CHECK_SLOTTED}`
+          : html`Copy URL to clipboard ${ICON_COPY_SLOTTED}`}
       </md-text-button>
     `;
   }
@@ -27,18 +28,15 @@ export class ShareURL extends LitElement {
     );
 
     this.copied = true;
-    this.requestUpdate("copied");
 
     setTimeout(() => {
       this.copied = false;
-      this.requestUpdate("copied");
     }, 5000);
   }
 
   static styles = css`
     md-text-button {
-      margin-top: 16px;
-      width: 100%;
+      display: block;
     }
   `;
 }

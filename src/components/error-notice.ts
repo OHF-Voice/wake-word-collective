@@ -16,12 +16,9 @@ export class ErrorNotice extends LitElement {
       display: flex;
       flex-direction: column;
       align-items: center;
-      max-width: 450px;
-      width: 100%;
     }
 
     .notice {
-      width: 100%;
       padding: 10px 12px;
       border-radius: 4px;
       box-sizing: border-box;

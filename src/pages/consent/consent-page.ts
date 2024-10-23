@@ -5,6 +5,7 @@ import "@material/web/button/text-button";
 import "@material/web/textfield/filled-text-field";
 import "../../components/card-layout";
 import { WAKE_WORDS, ICON_CHEVRON_SLOTTED, PAGE_STYLES } from "../../const";
+import { preloadImage } from "../../util/preload";
 
 @customElement("consent-page")
 export class ConsentPage extends LitElement {
@@ -25,17 +26,14 @@ export class ConsentPage extends LitElement {
     this.descriptionField.value = this.description;
   }
 
-  getChangeLink() {
-    if (Object.keys(WAKE_WORDS).length < 2) return;
-    return html`&nbsp;(<a href="#" @click=${this.cancelConsent}>change</a>)`;
-  }
-
   render() {
+    preloadImage("./images/demo.gif");
+
     if (this.givingConsent) {
       return html`
         <card-layout header="Checking audio device">
-          <div class="card-content">
-            <i>Please wait...</i>
+          <div class="card-content" slot="card-content">
+            <i>Please wait…</i>
           </div>
         </card-layout>
       `;
@@ -43,11 +41,15 @@ export class ConsentPage extends LitElement {
 
     return html`
       <card-layout header="Some details">
-        <div class="card-content">
+        <div class="card-content" slot="content">
           <p>
             Selected wake word:
             <strong>${WAKE_WORDS[this.wakeWord]}</strong>
-            ${this.getChangeLink()}
+            ${Object.keys(WAKE_WORDS).length > 1
+              ? html`
+                  &nbsp;(<a href="#" @click=${this.cancelConsent}>change</a>)
+                `
+              : ""}
           </p>
           <p class="consent">
             <strong>Consent</strong><br />
@@ -71,7 +73,7 @@ export class ConsentPage extends LitElement {
           <md-filled-text-field label="Language"></md-filled-text-field>
           <div class="helper">Example: Dutch</div>
         </div>
-        <div class="card-actions">
+        <div class="card-actions" slot="actions">
           <span></span>
           <md-text-button has-icon trailing-icon @click=${this.submitConsent}>
             Submit ${ICON_CHEVRON_SLOTTED}

@@ -1,5 +1,5 @@
-import { LitElement, css, html } from "lit";
-import { customElement, property } from "lit/decorators.js";
+import { LitElement, css, html, nothing } from "lit";
+import { customElement, property, state } from "lit/decorators.js";
 import { ICON_CHEVRON_SLOTTED, PAGE_STYLES, WAKE_WORDS } from "../../const";
 import "@material/web/list/list";
 import "@material/web/list/list-item";
@@ -11,22 +11,22 @@ import type { Recorder } from "../../util/recorder";
 
 @customElement("instructions-page")
 export class InstructionsPage extends LitElement {
-  @property() public startRecording!: (recorder: Recorder) => void;
+  @property({
+    attribute: false,
+  })
+  public startRecording!: (recorder: Recorder) => void;
 
   @property() public description!: string;
 
   @property() public wakeWord!: string;
 
-  @property({
-    attribute: false,
-  })
-  public recorderError: boolean = false;
+  @state() private recorderError: boolean = false;
 
   render() {
     return html`
       <card-layout header="Before we get started">
-        <img src="./images/demo.gif" class="demo" />
-        <div class="card-content">
+        <img src="./images/demo.gif" class="demo" slot="banner" />
+        <div class="card-content" slot="content">
           ${this.recorderError
             ? html`
                 <error-notice>
@@ -34,7 +34,7 @@ export class InstructionsPage extends LitElement {
                   your browser permissions and try again
                 </error-notice>
               `
-            : null}
+            : nothing}
           <p>
             We only need you to say two words,
             <strong>${WAKE_WORDS[this.wakeWord]}</strong>, a couple of times
@@ -59,7 +59,7 @@ export class InstructionsPage extends LitElement {
           </ol>
           <p>Don’t worry about background noise; it's useful for training</p>
         </div>
-        <div class="card-actions">
+        <div class="card-actions" slot="actions">
           <md-text-button has-icon trailing-icon @click=${this.beginRecording}>
             Let's get started ${ICON_CHEVRON_SLOTTED}
           </md-text-button>
@@ -92,26 +92,6 @@ export class InstructionsPage extends LitElement {
 
       svg {
         width: 24px;
-      }
-
-      p:last-child {
-        margin-bottom: 0;
-      }
-
-      .note {
-        background-color: #f5f5f5;
-        font-size: 0.875rem;
-        border-radius: 6px;
-        padding: 12px;
-        line-height: 1.5;
-      }
-
-      .note p:first-of-type {
-        margin-top: 0;
-      }
-
-      ol li:not(:last-child) {
-        margin-bottom: 0.5rem;
       }
 
       img.demo {

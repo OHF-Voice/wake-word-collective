@@ -13,7 +13,7 @@ export class LandingPage extends LitElement {
   render() {
     return html`
       <card-layout>
-        <div class="card-content">
+        <div class="card-content" slot="content">
           <p>
             Give us a minute of your time to improve our community-driven,
             privacy-focused voice assistant, and we’ll break big tech’s
@@ -38,9 +38,9 @@ export class LandingPage extends LitElement {
             </p>
           </div>
         </div>
-        ${Object.entries(WAKE_WORDS).map(
-          ([key, label]) => html`
-            <div class="card-actions">
+        <div class="card-actions" slot="actions">
+          ${Object.entries(WAKE_WORDS).map(
+            ([key, label]) => html`
               <md-text-button
                 has-icon
                 trailing-icon
@@ -48,9 +48,9 @@ export class LandingPage extends LitElement {
               >
                 Help record samples for “${label}” ${ICON_CHEVRON_SLOTTED}
               </md-text-button>
-            </div>
-          `,
-        )}
+            `,
+          )}
+        </div>
       </card-layout>
     `;
   }

@@ -1,6 +1,7 @@
 import { LitElement, PropertyValues, css, html } from "lit";
 import { customElement, property, state } from "lit/decorators.js";
 import type { Recorder } from "../../util/recorder";
+import { preloadImage } from "../../util/preload";
 import { classMap } from "lit/directives/class-map.js";
 import "@material/web/button/filled-button";
 import { PAGE_STYLES, WAKE_WORDS } from "../../const";
@@ -37,6 +38,8 @@ export class RecordingPage extends LitElement {
   }
 
   render() {
+    preloadImage("./images/casita/heart.gif");
+
     return html`
       <div class="recording-sign">RECORDING ACTIVE</div>
       <div class="speak-indicator">

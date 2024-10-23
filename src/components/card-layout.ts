@@ -1,4 +1,4 @@
-import { LitElement, css, html } from "lit";
+import { LitElement, css, html, nothing } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import { PAGE_STYLES } from "../const";
 
@@ -9,26 +9,15 @@ export class CardLayout extends LitElement {
   @property() public alignment: "center" | "left" = "left";
 
   render() {
-    let cardHeader = null;
-    if (this.header) {
-      cardHeader = html`
-        <h1 class="card-header">
-          ${this.casita
-            ? html`
-                <div class="casita">
-                  <img src="./images/casita/${this.casita}.gif" />
-                </div>
-              `
-            : null}
-          ${this.header}
-        </h1>
-      `;
-    }
-
     return html`
       <div class="ha-card align-${this.alignment}">
-        ${cardHeader}
-        <slot></slot>
+        <div class="card-header">
+          <slot name="header-image" class="header-image"></slot>
+          ${this.header ? html`<h1>${this.header}</h1>` : nothing}
+        </div>
+        <slot name="banner"></slot>
+        <slot name="content"></slot>
+        <slot name="actions"></slot>
       </div>
       <div class="spacer"></div>
       <div class="footer">
@@ -109,29 +98,30 @@ export class CardLayout extends LitElement {
         font-weight: 400;
       }
 
-      h1.card-header {
-        margin: 16px 16px 16px;
+      .card-header {
         display: flex;
-        font-weight: 500;
         flex-direction: column;
       }
 
-      .casita {
-        margin-top: 16px;
+      .card-header h1 {
+        margin: 16px 16px 0;
+        font-weight: 500;
       }
 
-      .casita img {
-        height: 120px;
+      .card-header .header-image::slotted(*) {
+        padding-top: 32px;
       }
 
       ::slotted(.card-content) {
-        padding: 0 16px 16px;
+        padding: 16px;
         line-height: 1.5;
       }
 
       ::slotted(.card-actions) {
         border-top: 1px solid rgba(0, 0, 0, 0.12);
         display: flex;
+        flex-wrap: wrap;
+        gap: 4px 0;
         justify-content: flex-end;
         align-items: center;
         padding: 8px;
