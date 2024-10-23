@@ -9,6 +9,7 @@ export class CardLayout extends LitElement {
 
   render() {
     return html`
+      <header-logo></header-logo>
       <div class="ha-card align-${this.alignment}">
         <div class="card-header">
           <slot name="header-image" class="header-image"></slot>

@@ -58,20 +58,12 @@ export class LandingPage extends LitElement {
   static styles = [
     PAGE_STYLES,
     css`
-      a {
-        color: var(--md-sys-color-primary);
-      }
-
       md-list {
         border-radius: 12px;
       }
 
       svg {
         width: 24px;
-      }
-
-      p:last-child {
-        margin-bottom: 0;
       }
 
       .note {

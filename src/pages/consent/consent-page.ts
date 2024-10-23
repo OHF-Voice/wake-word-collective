@@ -92,10 +92,6 @@ export class ConsentPage extends LitElement {
   static styles = [
     PAGE_STYLES,
     css`
-      a {
-        color: var(--md-sys-color-primary);
-      }
-
       p.consent {
         margin-bottom: 0;
       }

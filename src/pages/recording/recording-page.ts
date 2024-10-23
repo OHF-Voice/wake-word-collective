@@ -78,6 +78,7 @@ export class RecordingPage extends LitElement {
     css`
       :host {
         display: flex;
+        align-items: center;
         flex-direction: column;
         flex: 1;
       }

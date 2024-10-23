@@ -31,6 +31,10 @@ export const PAGE_STYLES = css`
     font-weight: 600;
   }
 
+  header-logo {
+    width: 100%;
+  }
+
   ol li:not(:last-child) {
     margin-bottom: 0.5rem;
   }

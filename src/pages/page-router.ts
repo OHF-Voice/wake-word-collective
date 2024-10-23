@@ -42,7 +42,6 @@ export class PageRouter extends LitElement {
   render() {
     if (!this.wakeWord) {
       return html`
-        <header-logo></header-logo>
         <landing-page
           .selectWakeWord=${(wakeWord: string) => {
             this.wakeWord = wakeWord;
@@ -53,15 +52,11 @@ export class PageRouter extends LitElement {
     }
 
     if (this.wakeWord === "thank_you") {
-      return html`
-        <header-logo></header-logo>
-        <thank-you-page></thank-you-page>
-      `;
+      return html`<thank-you-page></thank-you-page>`;
     }
 
     if (this.showInstructions) {
       return html`
-        <header-logo></header-logo>
         <instructions-page
           .wakeWord=${this.wakeWord}
           .description=${this.description}
@@ -84,7 +79,6 @@ export class PageRouter extends LitElement {
 
     if (!this.recorder) {
       return html`
-        <header-logo></header-logo>
         <consent-page
           .wakeWord=${this.wakeWord}
           .description=${this.description}
@@ -113,7 +107,6 @@ export class PageRouter extends LitElement {
     recording-page {
       width: 100%;
       height: 100%;
-      align-items: center;
     }
   `;
 }
