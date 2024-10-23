@@ -11,7 +11,10 @@ export class ThankYouPage extends LitElement {
     return html`
       <card-layout header="Thank you!" alignment="center">
         <div class="casita" slot="header-image">
-          <img src="./images/casita/heart.gif" />
+          <img
+            src="./images/casita/heart.gif"
+            alt="Casita mascot with heart eyes expressing gratitude"
+          />
         </div>
         <div class="card-content" slot="content">
           <p>

@@ -25,7 +25,12 @@ export class InstructionsPage extends LitElement {
   render() {
     return html`
       <card-layout header="Before we get started">
-        <img src="./images/demo.gif" class="demo" slot="banner" />
+        <img
+          src="./images/demo.gif"
+          class="demo"
+          slot="banner"
+          alt="Demonstration of a person walking around a room, saying the wake word"
+        />
         <div class="card-content" slot="content">
           ${this.recorderError
             ? html`
