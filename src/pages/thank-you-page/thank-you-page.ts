@@ -38,10 +38,10 @@ export class ThankYouPage extends LitElement {
   }
 
   restart() {
-    return (window.location.href = window.location.href.replace(
+    window.location.href = window.location.href.replace(
       window.location.hash,
       "",
-    ));
+    );
   }
 
   static styles = [

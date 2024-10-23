@@ -108,4 +108,12 @@ export class PageRouter extends LitElement {
       ></recording-page>
     `;
   }
+
+  static styles = css`
+    recording-page {
+      width: 100%;
+      height: 100%;
+      align-items: center;
+    }
+  `;
 }
