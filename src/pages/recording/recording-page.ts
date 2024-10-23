@@ -59,11 +59,6 @@ export class RecordingPage extends LitElement {
             : "Keep going if you want to!"}
         </p>
       </div>
-      <p class="instructions">
-        Say it like you would say it normally. Try putting your device down
-        while moving around the room. Occasionally speak softly or speak up.
-        Some background noise is useful for training.
-      </p>
       <md-filled-button
         @click=${() => {
           this.recorder.stop();
