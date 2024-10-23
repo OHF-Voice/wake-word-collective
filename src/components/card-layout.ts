@@ -5,7 +5,6 @@ import { PAGE_STYLES } from "../const";
 @customElement("card-layout")
 export class CardLayout extends LitElement {
   @property() public header!: string;
-  @property() public casita!: string;
   @property() public alignment: "center" | "left" = "left";
 
   render() {
