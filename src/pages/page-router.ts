@@ -2,6 +2,7 @@ import { LitElement, PropertyValues, css, html } from "lit";
 import { customElement, state } from "lit/decorators.js";
 import "./landing/landing-page";
 import "./thank-you-page/thank-you-page";
+import "../components/header-logo";
 import { WAKE_WORDS } from "../const";
 import type { Recorder } from "../util/recorder";
 
@@ -51,24 +52,38 @@ export class PageRouter extends LitElement {
       return html`<thank-you-page></thank-you-page>`;
     }
 
-    if (!this.recorder) {
+    if (!this.description) {
       return html`
         <consent-page
           .wakeWord=${this.wakeWord}
           .description=${this.description}
-          .giveConsent=${(recorder: Recorder, description: string) => {
-            this.recorder = recorder;
-            recorder.addEventListener("stop", () => {
-              this.wakeWord = undefined;
-              location.hash = "thank_you";
-              this.recorder = undefined;
-            });
+          .giveConsent=${(description: string) => {
             this.description = description;
           }}
           .cancelConsent=${() => {
             this.wakeWord = undefined;
           }}
         ></consent-page>
+      `;
+    }
+
+    if (!this.recorder) {
+      return html`
+        <instructions-page
+          .wakeWord=${this.wakeWord}
+          .description=${this.description}
+          .startRecording=${(recorder: Recorder) => {
+            this.recorder = recorder;
+
+            recorder.addEventListener("stop", () => {
+              this.wakeWord = undefined;
+              this.recorder = undefined;
+              location.hash = "thank_you";
+            });
+
+            this.recorder?.start();
+          }}
+        ></instructions-page>
       `;
     }
 

@@ -121,6 +121,6 @@ export const createRecorder = async (
     mediaRecorder,
     myvad,
   );
-  recorder.start();
+
   return recorder;
 };

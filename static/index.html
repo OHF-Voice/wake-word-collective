@@ -1,140 +1,128 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <title>Wake Word Collective - Open Home Foundation</title>
-    <link rel="icon" href="/images/favicon.png" type="image/png" />
-    <meta name="description" content="Help create a wake word dataset" />
-    <meta name="viewport" content="width=device-width" />
-    <meta
-      property="og:title"
-      content="Wake Word Collective - Open Home Foundation"
-    />
-    <meta
-      property="og:site_name"
-      content="Wake Word Collective - Open Home Foundation"
-    />
-    <meta
-      property="og:url"
-      content="https://voice-collector.openhomefoundation.org/"
-    />
-    <meta property="og:type" content="website" />
-    <meta property="og:description" content="Help create a wake word dataset" />
-    <meta
-      property="og:image"
-      content="https://ohf-voice.github.io/wake-word-collective/images/social.jpeg"
-    />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@openhomefoundation" />
-    <meta
-      name="twitter:title"
-      content="Wake Word Collective - Open Home Foundation"
-    />
-    <meta
-      name="twitter:description"
-      content="Help create a wake word dataset"
-    />
-    <meta
-      name="twitter:image"
-      content="https://ohf-voice.github.io/wake-word-collective/images/social.jpeg"
-    />
-    <style>
-      html {
-        font-size: 16px;
-        --ha-card-border-radius: 12px;
-      }
 
-      body {
-        --roboto-font: Roboto, system-ui;
-        --text-color: rgba(0, 0, 0, 0.6);
-        --danger-color: #db4437;
+<head>
+  <title>Wake Word Collective - Open Home Foundation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap"
+    rel="stylesheet">
+  <link rel="icon" href="/images/favicon.png" type="image/png" />
+  <link rel="preload" as="image" href="./images/logo.svg">
+  <meta name="description" content="Help create a wake word dataset" />
+  <meta name="viewport" content="width=device-width" />
+  <meta property="og:title" content="Wake Word Collective - Open Home Foundation" />
+  <meta property="og:site_name" content="Wake Word Collective - Open Home Foundation" />
+  <meta property="og:url" content="https://voice-collector.openhomefoundation.org/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:description" content="Help create a wake word dataset" />
+  <meta property="og:image" content="https://ohf-voice.github.io/wake-word-collective/images/social.jpeg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@openhomefoundation" />
+  <meta name="twitter:title" content="Wake Word Collective - Open Home Foundation" />
+  <meta name="twitter:description" content="Help create a wake word dataset" />
+  <meta name="twitter:image" content="https://ohf-voice.github.io/wake-word-collective/images/social.jpeg" />
+  <style>
+    html {
+      font-size: 16px;
+      --ha-card-border-radius: 12px;
+    }
 
-        --md-sys-color-primary: #03a9f4;
-        --md-sys-color-on-primary: #fff;
-        --md-ref-typeface-brand: var(--roboto-font);
-        --md-ref-typeface-plain: var(--roboto-font);
+    body {
+      --instrument-font: Instrument Sans, Roboto, system-ui;
+      --figtree-font: Figtree, Roboto, system-ui;
+      --text-color: rgba(0, 0, 0, 0.6);
+      --danger-color: #db4437;
 
-        --md-sys-color-surface: #fff;
-        --md-sys-color-surface-container: #fff;
-        --md-sys-color-surface-container-high: #fff;
-        --md-sys-color-surface-container-highest: #f5f5f5;
-        --md-sys-color-secondary-container: #e0e0e0;
+      --md-sys-color-primary: #03a9f4;
+      --md-sys-color-on-primary: #fff;
+      --md-ref-typeface-brand: var(--instrument-font);
+      --md-ref-typeface-plain: var(--instrument-font);
 
-        --md-sys-typescale-headline-font: var(--roboto-font);
-        --md-sys-typescale-title-font: var(--roboto-font);
+      --md-sys-color-surface: #fff;
+      --md-sys-color-surface-container: #fff;
+      --md-sys-color-surface-container-high: #fff;
+      --md-sys-color-surface-container-highest: #f5f5f5;
+      --md-sys-color-secondary-container: #e0e0e0;
 
-        font-family: Roboto, sans-serif;
-        -moz-osx-font-smoothing: grayscale;
-        -webkit-font-smoothing: antialiased;
-        font-weight: 400;
-        margin: 0;
-        padding: 0;
-        background-color: #fafafa;
-      }
+      --md-sys-typescale-headline-font: var(--instrument-font);
+      --md-sys-typescale-title-font: var(--instrument-font);
 
+      --ha-card-header-font-family: var(--figtree-font);
+
+      font-family: Instrument Sans, Roboto, system-ui;
+      -moz-osx-font-smoothing: grayscale;
+      -webkit-font-smoothing: antialiased;
+      font-weight: 400;
+      margin: 0;
+      padding: 0;
+      background-color: #fafafa;
+    }
+
+    .layout {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      min-height: 100vh;
+      min-height: var(--vh, 100vh);
+      min-height: stretch;
+    }
+
+    /* Only works in Safari */
+    @supports (-webkit-hyphens: none) {
       .layout {
-        display: flex;
-        align-items: center;
-        flex-direction: column;
-        min-height: 100vh;
-        min-height: var(--vh, 100vh);
-        min-height: stretch;
+        min-height: -webkit-fill-available;
       }
+    }
+  </style>
+  <script>
+    function check() {
+      "use strict";
+      try {
+        eval("async () => {}");
+        eval("function f(e) { for (let e in {}) e }");
+      } catch (e) {
+        return false;
+      }
+      return true;
+    }
+    supported = check();
+    if (!supported) {
+      alert(
+        "We are sorry, but this browser is not supported. We advise you to upgrade your browser.",
+      );
+    }
+    if (
+      window.orientation !== undefined &&
+      !CSS.supports("min-height: stretch") &&
+      !CSS.supports("-webkit-hyphens")
+    ) {
+      let prevClientHeight;
+      const setViewportProperty = (doc) => {
+        const clientHeight = doc.clientHeight;
+        if (clientHeight === prevClientHeight) {
+          return;
+        }
+        requestAnimationFrame(() => {
+          // min 1 to prevent Firefox from removing the address bar
+          doc.style.setProperty("--vh", clientHeight - 1 + "px");
+          prevClientHeight = clientHeight;
+        });
+      };
+      window.addEventListener("resize", () =>
+        setViewportProperty(document.documentElement),
+      );
+      setViewportProperty(document.documentElement);
+    }
+  </script>
+</head>
 
-      /* Only works in Safari */
-      @supports (-webkit-hyphens: none) {
-        .layout {
-          min-height: -webkit-fill-available;
-        }
-      }
-    </style>
-    <script>
-      function check() {
-        "use strict";
-        try {
-          eval("async () => {}");
-          eval("function f(e) { for (let e in {}) e }");
-        } catch (e) {
-          return false;
-        }
-        return true;
-      }
-      supported = check();
-      if (!supported) {
-        alert(
-          "We are sorry, but this browser is not supported. We advise you to upgrade your browser.",
-        );
-      }
-      if (
-        window.orientation !== undefined &&
-        !CSS.supports("min-height: stretch") &&
-        !CSS.supports("-webkit-hyphens")
-      ) {
-        let prevClientHeight;
-        const setViewportProperty = (doc) => {
-          const clientHeight = doc.clientHeight;
-          if (clientHeight === prevClientHeight) {
-            return;
-          }
-          requestAnimationFrame(() => {
-            // min 1 to prevent Firefox from removing the address bar
-            doc.style.setProperty("--vh", clientHeight - 1 + "px");
-            prevClientHeight = clientHeight;
-          });
-        };
-        window.addEventListener("resize", () =>
-          setViewportProperty(document.documentElement),
-        );
-        setViewportProperty(document.documentElement);
-      }
-    </script>
-  </head>
-  <body>
-    <page-router class="layout"></page-router>
-    <script type="module" src="./js/entrypoint.js"></script>
-  </body>
-  <script
-    defer
-    src="https://cdn.jsdelivr.net/npm/onnxruntime-web@1.14.0/dist/ort.js"
-  ></script>
-  <script defer src="./js/vad-web.min.js"></script>
+<body>
+  <page-router class="layout"></page-router>
+  <script type="module" src="./js/entrypoint.js"></script>
+</body>
+<script defer src="https://cdn.jsdelivr.net/npm/onnxruntime-web@1.14.0/dist/ort.js"></script>
+<script defer src="./js/vad-web.min.js"></script>
+
 </html>
