@@ -108,10 +108,4 @@ export class PageRouter extends LitElement {
       ></recording-page>
     `;
   }
-
-  static styles = css`
-    * {
-      flex: 1;
-    }
-  `;
 }

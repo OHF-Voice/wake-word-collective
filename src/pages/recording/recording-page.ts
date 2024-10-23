@@ -17,6 +17,8 @@ export class RecordingPage extends LitElement {
   @state() private times = 10;
 
   protected firstUpdated(changedProperties: PropertyValues): void {
+    preloadImage("./images/casita/heart.gif");
+
     super.firstUpdated(changedProperties);
     const showDelayedGreenDot = (time = 4000) => {
       setTimeout(() => {
@@ -38,8 +40,6 @@ export class RecordingPage extends LitElement {
   }
 
   render() {
-    preloadImage("./images/casita/heart.gif");
-
     return html`
       <div class="recording-sign">RECORDING ACTIVE</div>
       <div class="speak-indicator">
@@ -81,6 +81,7 @@ export class RecordingPage extends LitElement {
         align-items: center;
         width: 100%;
         height: 100%;
+        flex: 1;
       }
 
       .recording-sign {

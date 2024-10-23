@@ -22,13 +22,13 @@ export class ConsentPage extends LitElement {
   @state() private givingConsent = false;
 
   firstUpdated(changedProperties: PropertyValues) {
+    preloadImage("./images/demo.gif");
+
     super.firstUpdated(changedProperties);
     this.descriptionField.value = this.description;
   }
 
   render() {
-    preloadImage("./images/demo.gif");
-
     if (this.givingConsent) {
       return html`
         <card-layout header="Checking audio device">

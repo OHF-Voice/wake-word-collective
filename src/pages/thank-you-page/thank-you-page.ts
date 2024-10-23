@@ -51,6 +51,10 @@ export class ThankYouPage extends LitElement {
         display: block;
         margin-top: 16px;
       }
+
+      .casita img {
+        height: 120px;
+      }
     `,
   ];
 }

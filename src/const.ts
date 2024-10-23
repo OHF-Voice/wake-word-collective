@@ -31,10 +31,6 @@ export const PAGE_STYLES = css`
     margin-bottom: 0.5rem;
   }
 
-  .casita img {
-    height: 120px;
-  }
-
   p:last-child {
     margin-bottom: 0;
   }

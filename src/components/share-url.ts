@@ -11,7 +11,7 @@ export class ShareURL extends LitElement {
       <md-text-button
         trailing-icon
         @click=${this.copyToClipboard}
-        ?disabled=${this.copied}
+        .disabled=${this.copied}
       >
         ${this.copied
           ? html`URL copied to clipboard! ${ICON_CHECK_SLOTTED}`
@@ -21,8 +21,6 @@ export class ShareURL extends LitElement {
   }
 
   async copyToClipboard() {
-    if (this.copied) return;
-
     await navigator.clipboard.writeText(
       "https://ohf-voice.github.io/wake-word-collective/",
     );

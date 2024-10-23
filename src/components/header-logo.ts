@@ -12,10 +12,6 @@ export class HeaderLogo extends LitElement {
   }
 
   static styles = css`
-    :host {
-      flex: 0 !important;
-    }
-
     header {
       margin: 0 auto;
       max-width: 450px;
@@ -25,10 +21,9 @@ export class HeaderLogo extends LitElement {
     }
 
     img {
+      display: block;
       width: 100%;
-      height: auto;
       max-height: 38px;
-      max-width: 100%;
     }
   `;
 }
