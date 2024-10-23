@@ -1,5 +1,5 @@
 import { LitElement, PropertyValues, css, html } from "lit";
-import { customElement, property, query, state } from "lit/decorators.js";
+import { customElement, property, query } from "lit/decorators.js";
 import "@material/web/checkbox/checkbox";
 import "@material/web/button/text-button";
 import "@material/web/textfield/filled-text-field";
